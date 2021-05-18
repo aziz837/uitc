@@ -1,0 +1,564 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-wrapper">
+ 	
+    <!-- Preloader -->
+    <div class="preloader"></div>
+ 	
+    <!-- Main Header-->
+    <header class="main-header header-style-one">
+		
+		>
+		
+    	<!-- Header Upper -->
+			<div class="header-upper">
+				<div class="auto-container">
+						<div class="clearfix">
+								
+								<div class="pull-left logo-box">
+										<div class="logo"><a href="{% url 'boot:index' %}"><img  style="height: 50px;"src="{% static 'images/uitc.svg'%}" alt="" title="Bootcamp"></a></div>
+								</div>
+									 
+									 <div class="nav-outer clearfix">
+										<!--Mobile Navigation Toggler-->
+										<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+										<!-- Main Menu -->
+										<nav class="main-menu show navbar-expand-md">
+												<div class="navbar-header">
+														<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+																<span class="icon-bar"></span>
+																<span class="icon-bar"></span>
+																<span class="icon-bar"></span>
+														</button>
+												</div>
+
+												<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+														<ul class="navigation clearfix">
+																<li><a href="{% url 'boot:index' %}" style="text-transform: none;">Bosh sahifa</a></li>
+																<li><a href="{% url 'boot:index' %}#about" style="text-transform: none;">Biz haqimizda</a>
+
+																</li>
+																<li><a href="{% url 'boot:index' %}#kurslar">Kurslar</a>
+
+																</li>
+
+
+
+
+																<li><a href="{% url 'boot:contact' %}">Aloqa</a></li>
+														</ul>
+												</div>
+												
+										</nav>
+										
+								
+								
+										
+								</div>
+							 
+						</div>
+				</div>
+		</div>
+        <!-- End Header Upper -->
+        
+		<!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+            
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html"><img src="{% static 'images/logo1.svg'%}" alt="" title=""></a></div>
+                <div class="menu-outer">
+					<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+				</div>
+            </nav>
+        </div>
+		<!-- End Mobile Menu -->
+		
+    </header>
+    <!-- End Main Header -->
+	
+	<!-- Page Title -->
+	<section class="page-title style-two">
+		<div class="auto-container">
+	<h1>Shaxsiy kabinet</h1>
+		</div>
+</section>
+	
+	<!-- Student Profile Section -->
+	<section class="student-profile-section">
+		<div class="patern-layer-one paroller" data-paroller-factor="0.40" data-paroller-factor-lg="0.20" data-paroller-type="foreground" data-paroller-direction="vertical" style="background-image: url(static/images/icons/icon-1.png)"></div>
+		<div class="patern-layer-two paroller" data-paroller-factor="0.40" data-paroller-factor-lg="-0.20" data-paroller-type="foreground" data-paroller-direction="vertical" style="background-image: url(static/images/icons/icon-2.png)"></div>
+		<div class="circle-one"></div>
+		<div class="circle-two"></div>
+		<div class="auto-container">
+			
+			<div class="row clearfix">
+				
+				<!-- Image Section -->
+				<div class="image-column col-lg-3 col-md-12 col-sm-12">
+					<div class="inner-column">
+						{% if not user.photo %}
+							<div class="image">
+							<img src="{% static 'images/user.png'%}" alt="">
+							</div>
+					 	 {% else %}
+							<div class="image">
+							<img src="{{ user.photo.url }}" alt="">
+							</div>
+						
+					  {% endif %}
+						<h4>{{user.last_name}}</h4>
+						<h5 style="font-size: 16px!important; margin-top: 5px;">{{ user.email}}</h5>
+						<hr>
+						<!-- <button type="file">Upload</button> -->
+						<ul class="student-editing">
+						
+							<!-- <li><a href="#">Rasm qoyish</a></li> -->
+						</ul>
+						<form method="post" enctype="multipart/form-data">
+						<!-- {% csrf_token %}
+															<div class="file-input mt-3">
+								<input type="file" id="file" class="file" name="image-file">
+								<label for="file">
+									Rasm yuklash
+																</label>
+																
+							</div>
+							<button class="btn btn-primary mt-1"type="submit">Tasdig'lash</button>
+				
+						  </form>
+							{% for message in messages%}
+								<h3 style="text-align: center; font-size: 16px; margin-top: 20px; color: red;"> {{message}}</h3>
+							{% endfor %} -->
+							<a href="{% url 'boot:edit-profile' request.user.pk %}" class=""><span  style="font-size: 20px; margin-top: 20px;">Sozlamalar</span></a>
+							<hr>
+							<a href="{% url 'boot:logout' request.user.pk  %}" class=""><span  style="font-size: 20px; margin-top: 20px;">Chiqish</span></a>
+					</div>
+				</div>
+				
+				<!-- Content Section -->
+				<div class="content-column col-lg-9 col-md-12 col-sm-12">
+					<div class="inner-column">
+						
+						<!-- Profile Info Tabs-->
+						<div class="profile-info-tabs">
+							<!-- Profile Tabs-->
+							<div class="profile-tabs tabs-box">
+							
+								<!--Tab Btns-->
+								<ul class="tab-btns tab-buttons clearfix">
+									<li data-tab="#prod-overview" class="tab-btn active-btn">Mening kurslarim</li>
+									<li data-tab="#prod-bookmark" class="tab-btn">To'lovlar</li>
+									<li data-tab="#prod-billing" class="tab-btn">Kurslar</li>
+									<li data-tab="#prod-billin" class="tab-btn">Balans</li>
+									<li data-tab="#prod-billings" class="tab-btn">Bonus Balans</li>
+									
+								</ul>
+								
+								<!--Tabs Container-->
+								<div class="tabs-content">
+									
+									<!--Tab / Active Tab-->
+									<div class="tab active-tab" id="prod-overview">
+										<div class="content">
+											<h5 class="ml-4">	Sizda aktiv kurslar yo'q!</h5>
+											<!-- Sec Title -->
+											{% if not user.courser == Null %}
+											
+											<div class="row clearfix">
+												
+												<!-- Cource Block Two -->
+												<div class="price-block col-md-6 col-sm-12">
+													<div class="inner-box">
+														
+															<div class="icon-box">
+																<span class="icon"><img src="{{ user.courser.photo.url }}" alt=""></span>
+															</div>
+															<h3>{{ user.courser.name }}</h3>
+															<div class="text">{{ user.courser.desc }}</div>
+														
+					
+													</div>
+												</div>
+												
+												
+											</div>
+											{% endif %}
+										</div>
+									</div>
+									
+									<!-- Tab -->
+								
+									<div class="tab" id="prod-bookmark">
+										<div class="content">
+											
+											<div class="row clearfix">
+												<h5 class="ml-4">	Sizda to'lovlar yo'q!</h5>
+												{% if not user.courser == Null %}
+												<table class="table table-hover ml-4">
+												
+													<thead>
+														<tr>
+															<th>Kurs turi</th>
+															<th>To'lov vaqti</th>
+															<th>Summa</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>{{ user.courser.name}}</td>
+															<td>{{ user.payment_date}}</td>
+															<td>{{user.courser.price}} UZS</td>
+														</tr>
+													
+													</tbody>
+												</table>
+												{% endif %}
+											</div>
+											
+										</div>
+									</div>
+									<div class="tab" id="prod-billin">
+										<div class="content">
+											<style>
+												.bobo{
+											
+													border: none!important;
+													padding: 20px;
+													border-radius: 20px !important;
+													margin-bottom: 20px !important;
+													color: black;
+													background-color: white;
+												}
+												.input{
+													padding: 10px !important;
+													background-color: transparent !important;
+													border-radius: 20px !important;
+												}
+											</style>
+											<div class="intro-y bobo">
+												<div class="flex flex-col sm:flex-row items-center border-b border-gray-200">
+														<h4 class="font-medium text-base mr-auto">
+															Umumiy balans
+														</h4>
+												</div>
+												<div id="input-sizing">
+														<h4 class="text-3xl font-medium leading-none mt-3"> 0 so'm</h4>
+												</div>
+										</div>
+										<div class="intro-y box bobo">
+											<div class="flex flex-col sm:flex-row items-center border-b border-gray-200">
+													<h4 class="font-medium text-base mr-auto mb-4">
+															Balansni to'ldirish
+													</h4>
+											</div>
+											<div id="input-sizing">
+															<!-- form -->
+																<form action="#" method="get">
+															<input type="number" min="1000" name="amount" class="input input--lg w-full border mt-2" placeholder="Summa" required="">
+															
+														<a href="#" class="ml-2" style="padding: 15px; border: 1px solid silver; border-radius: 10px;">	<img src="{% static 'images/icons/click.svg'%}"class="click_logo " alt=""></a>
+														<a href="#" class="ml-2" style="padding: 15px; border: 1px solid silver; border-radius: 10px;">	<img src="{% static 'images/icons/payme.svg'%}"class="click_logo " alt=""></a>
+													</form>
+											</div>
+									</div>
+											
+										</div>
+									</div>
+									<div class="tab" id="prod-billings">
+										<div class="content">
+											<style>
+												.bobo{
+													border: 1px solid silver;
+													padding: 20px;
+													border-radius: 20px !important;
+													margin-bottom: 20px !important;
+												}
+												.input{
+													padding: 10px !important;
+													background-color: transparent !important;
+													border-radius: 20px !important;
+												}
+												.input2{
+													padding: 10px !important;
+													background-color: transparent !important;
+													
+												}
+												.btn-primary:hover{
+													color: white!important;
+												}
+											</style>
+											<div class="intro-y bobo">
+												<div class="flex flex-col sm:flex-row items-center border-b border-gray-200">
+														<h4 class="font-medium text-base mr-auto">
+																Umumiy balans
+														</h4>
+												</div>
+												<div id="input-sizing">
+														<h4 class="text-3xl font-medium leading-none mt-3"> 0 so'm</h4>
+												</div>
+										</div>
+										<div class="intro-y box bobo">
+											<div class="flex flex-col sm:flex-row items-center border-b border-gray-200">
+													<h4 class="font-medium text-base mr-auto mb-3">
+														Vaucherni aktivatsiya qilish
+													</h4>
+											</div>
+											<div id="input-sizing">
+															<!-- form -->
+																<form action="#" method="get">
+															<input type="text"  name="amount" class="input2 input--lg w-full border-bottom mt-2" placeholder="Vaucherni kiriting" required="">
+												<button type="submit" style="border-radius: 0!important;background-color: #00ab15!important;  height: 50px;"class=" ml-4 btn btn-primary">Tekshirish</button>			
+															
+													</form>
+											</div>
+									</div>
+											
+										</div>
+									</div>
+									<!-- Tab -->
+									<div class="tab" id="prod-billing">
+										<div class="content">
+											
+											<div class="row clearfix">
+
+												<!-- Price Block -->
+												<div class="price-block  col-md-6 col-sm-12">
+													<div class="inner-box">
+														<div class="icon-box">
+															<span class="icon"><img src="{% static 'images/icons/Frontend.png'%}" alt=""></span>
+														</div>
+														<h3>Frontend Development</h3>
+														<div class="text">Html, CSS, Sass,  Materialize UI, Bootstrap, Javascript.</div>
+														<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven"><span class="txt">A'zo bo'lish</span></a>
+				
+													</div>
+												</div>
+												<div class="price-block  col-md-6 col-sm-12">
+													<div class="inner-box">
+														<div class="icon-box">
+															<span class="icon"><img src="{% static 'images/icons/backend.png'%}" alt=""></span>
+														</div>
+														<h3>Backend Development</h3>
+														<div class="text"><p>PHP, Laravel,<br> Python, Django.</p> </div>
+														
+														
+														<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven"><span class="txt">A'zo bo'lish</span></a>
+				
+													</div>
+												</div>
+												<div class="price-block  col-md-6 col-sm-12">
+													<div class="inner-box">
+														<div class="icon-box">
+															<span class="icon"><img style="width: 128px; height: 128px;"src="{% static 'images/icons/Frameworks.png'%}" alt=""></span>
+														</div>
+														<h3>Frameworklar</h3>
+														<div class="text"><p>JQuery, React.js, <br>Vue.js, Angular.</p> </div>
+														
+														
+														<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven"><span class="txt">A'zo bo'lish</span></a>
+				
+													</div>
+												</div>
+												<div class="price-block  col-md-6 col-sm-12">
+													<div class="inner-box">
+														<div class="icon-box">
+															<span class="icon"><img src="{% static 'images/icons/database.png'%}" alt=""></span>
+														</div>
+														<h3>Database</h3>
+														<div class="text"><p>MySql, PostgreSQL<br> SQLite.</p> </div>
+														
+														
+														<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven"><span class="txt">A'zo bo'lish</span></a>
+				
+													</div>
+												</div>
+				
+												<!-- Price Block -->
+												<div class="price-block  col-md-6 col-sm-12">
+													<div class="inner-box">
+														<div class="icon-box">
+															<span class="icon"><img src="{% static 'images/icons/Graphic_design.png'%}" alt=""></span>
+														</div>
+														<h3>Grafik dizayn</h3>
+														<div class="text">Adobe Photoshop / Illustrator / Lightroom / Dimension.</div>
+														<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven"><span class="txt">A'zo bo'lish</span></a>
+				
+													</div>
+												</div>
+				
+												
+													<!-- Price Block -->
+													<div class="price-block  col-md-6 col-sm-12">
+														<div class="inner-box">
+															<div class="icon-box">
+																<span class="icon"><img src="{% static 'images/icons/3d_modeling.png'%}" alt=""></span>
+															</div>
+															<h3>3D Modellashtirish</h3>
+															<div class="text">Autodesk 3ds Max, V-ray, iToo Forest Pack </div>
+															<a href="{% url 'boot:contact' %}" class="theme-btn btn-style-seven mb-1"><span class="txt">A'zo bo'lish</span></a> 
+					
+														</div>
+													</div>
+										
+										
+				
+											</div>
+											
+										</div>
+									</div>
+									
+									<!-- Tab -->
+								
+									
+								</div>
+							</div>
+						</div>
+						
+						<!-- Post Share Options -->
+					
+						
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+	</section>
+	<!-- End Profile Section -->
+	
+	<!-- Call To Action Section Two -->
+
+	<!-- End Call To Action Section Two -->
+	
+	<!--Main Footer-->
+	<footer class="main-footer style-two">
+		
+		<!-- Upper Box -->
+	
+		
+		<!-- Pattern Layer Three -->
+		<div class="pattern-layer-three" style="background-image:url(images/background/pattern-2.png)"></div>
+		<div class="auto-container">
+		
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+            	<div class="row clearfix">
+                	
+                    <!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+							
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+									<div class="logo">
+                                    	<a href="{% url 'boot:index' %}"><img style="height: 50px;"src="{% static 'images/uitc.svg'%}" alt=""></a>
+                                    </div>
+									<div class="text">Namangan viloyati, Davlatobod tumani, 3-kichik nohiya, Islom Karimov ko'chasi, Yangi yoshlar ziyo maskani</div>
+									<div class="social-box">
+									
+										<a href="https://www.instagram.com/startriseuz/" class="fa fa-instagram"></a>
+										<a href="https://www.youtube.com/channel/UCa_yy51TFRHK97WPKf9Fx0Q" class="fa fa-google"></a>
+										<a href="https://t.me/startriseplus" class="fa fa-pinterest-p"></a>
+									</div>
+									
+								</div>
+							</div>
+							
+							<!--Footer Column-->
+            
+							
+							
+	
+
+						</div>
+					</div>
+					
+					<!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12 mt-3" >
+                        <div class="row clearfix">
+													<div class="footer-column col-lg-5 col-md-6 col-sm-12">
+														<div class="footer-widget links-widget" >
+							<ul class="links-widget mb-0" >
+								<li><a href="{% url 'boot:index' %}">Bosh sahifa</a></li>
+								<li><a href="{% url 'boot:index' %}#about">Biz haqimizda</a></li>
+							</ul>
+						</div>
+					</div>
+					
+
+							<!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+
+									<ul class="links-widget" >
+										<li><a href="{% url 'boot:index' %}#kurslar">Kurslar</a></li>
+										<li><a href="{% url 'boot:contact' %}">Aloqa</a></li>
+
+									</ul>
+								</div>
+							</div>
+							
+
+							
+							
+							
+                  
+						
+						
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!-- Footer Bottom -->
+			<div class="footer-bottom text-center">
+				<div class="copyright">Copyright &copy; 2021 Start Rise Plus</div>
+			</div>
+			
+		</div>
+	</footer>
+	
+</div>
+
+
+<script>
+	const wrapper = document.querySelector(".wrapper");
+	const fileName = document.querySelector(".file-name");
+	const defaultBtn = document.querySelector("#default-btn");
+	const customBtn = document.querySelector("#custom-btn");
+	const cancelBtn = document.querySelector("#cancel-btn i");
+	const img = document.querySelector("img");
+	let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+	function defaultBtnActive(){
+		defaultBtn.click();
+	}
+	defaultBtn.addEventListener("change", function(){
+		const file = this.files[0];
+		if(file){
+			const reader = new FileReader();
+			reader.onload = function(){
+				const result = reader.result;
+				img.src = result;
+				wrapper.classList.add("active");
+			}
+			cancelBtn.addEventListener("click", function(){
+				img.src = "";
+				wrapper.classList.remove("active");
+			})
+			reader.readAsDataURL(file);
+		}
+		if(this.value){
+			let valueStore = this.value.match(regExp);
+			fileName.textContent = valueStore;
+		}
+	});
+</script>
+{% endblock %}
